@@ -43,7 +43,7 @@ router.post("/cadastro", async (req, res) => {
                       [nome, email, hashedPassword, data_nasc, tokenVerificacao]
         );
         
-        const linkVerificacao = `http://localhost:3062/api/verificar-email/${tokenVerificacao}`;
+        const linkVerificacao = `https://1cc9-2804-14c-1af-42d9-9c85-ee26-de3-6e38.ngrok-free.app/api/verificar-email/${tokenVerificacao}`;
         await transporter.sendMail({
             from: "seuemail@gmail.com",
             to: email,
