@@ -1,9 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const db = require("../db");
 
 const router = express.Router();
 
+// Chave secreta do JWT (idealmente, coloque isso em uma variável de ambiente)
+const JWT_SECRET = process.env.JWT_SECRET 
 // Rota de login
 router.post("/login", async (req, res) => {
     const { email, senha } = req.body;
@@ -13,24 +16,36 @@ router.post("/login", async (req, res) => {
     }
 
     try {
-        const [result] = await db.query("SELECT * FROM usuarios WHERE email = ?", [email]);
+        const sql = "SELECT * FROM usuarios WHERE email = ?";
+        const [rows] = await db.query(sql, [email]);
 
-        if (result.length === 0) {
+        if (rows.length === 0) {
             return res.status(404).json({ erro: "Usuário não encontrado" });
         }
 
-        const usuario = result[0];
+        const usuario = rows[0];
+
+        // Comparar a senha fornecida com a senha criptografada no banco
         const isMatch = await bcrypt.compare(senha, usuario.senha);
 
         if (!isMatch) {
             return res.status(401).json({ erro: "Senha incorreta" });
         }
 
-        res.json({ mensagem: "Login bem-sucedido!" });
+        // Criar o token JWT
+        const token = jwt.sign(
+            { id: usuario.id, email: usuario.email }, // Dados do payload
+            JWT_SECRET, // Chave secreta
+            { expiresIn: "1h" } // Tempo de expiração do token
+        );
+
+        res.json({ mensagem: "Login bem-sucedido!", token });
     } catch (err) {
-        res.status(500).json({ erro: "Erro ao processar login" });
+        console.error("Erro no login:", err);
+        res.status(500).json({ erro: "Erro interno no servidor" });
     }
 });
 
 module.exports = router;
+
 

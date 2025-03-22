@@ -1,8 +1,13 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const cadastroRoutes = require("./routes/cadastro");
 const loginRoutes = require("./routes/login");
 const verificacaoRoutes = require("./routes/verificacao");
+const postsRoutes = require("./routes/posts");
+
+
 
 const app = express();
 const port = 3062;
@@ -17,6 +22,7 @@ app.use(express.json());
 app.use("/api", cadastroRoutes);
 app.use("/api", loginRoutes);
 app.use("/api", verificacaoRoutes);
+app.use("/api", postsRoutes);
 
 // Inicializando o servidor
 app.listen(port, () => {
