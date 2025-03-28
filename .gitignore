@@ -1,0 +1,15 @@
+# Ignorar arquivos de configuração sensíveis
+.env
+
+# Ignorar dependências do Node.js
+node_modules/
+
+# Ignorar logs e arquivos temporários
+npm-debug.log
+yarn-error.log
+*.log
+
+# Ignorar cache do Editor/IDE (caso use)
+.vscode/
+.idea/
+.DS_Store
