@@ -6,8 +6,9 @@ const db = require("../db");
 const router = express.Router();
 
 // Chave secreta do JWT (idealmente, coloque isso em uma variável de ambiente)
-const JWT_SECRET = process.env.JWT_SECRET 
-// Rota de login
+const JWT_SECRET = process.env.JWT_SECRET || "chave_super_secreta";
+
+
 router.post("/login", async (req, res) => {
     const { email, senha } = req.body;
 
@@ -25,7 +26,7 @@ router.post("/login", async (req, res) => {
 
         const usuario = rows[0];
 
-        // Comparar a senha fornecida com a senha criptografada no banco
+        
         const isMatch = await bcrypt.compare(senha, usuario.senha);
 
         if (!isMatch) {

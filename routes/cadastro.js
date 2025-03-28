@@ -1,3 +1,4 @@
+
 const express = require("express");
 const bcrypt = require("bcrypt");
 const db = require("../db");
@@ -9,8 +10,8 @@ const router = express.Router();
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user:"gmartinsdev1@gmail.com",
-        pass: "s m t q e r f d r r d y d f n t"
+        user: "contato.underap@gmail.com",
+        pass: "ezvf lhqv tqvy fljk"
     }
 });
 
@@ -44,7 +45,7 @@ router.post("/cadastro", async (req, res) => {
         );
         
         // Todo dia que rodar o ngrok na maquina, esse link http vai mudar,entao tem que vir aqui e trocar se não vai dar erro!!
-        const linkVerificacao = ` https://84d4-2804-14c-1a5-8231-4922-5c8-6722-9a5e.ngrok-free.app/api/verificar-email/${tokenVerificacao}`;
+        const linkVerificacao = `  https://2843-2804-14c-1af-42d9-91e-c454-4b6f-c75d.ngrok-free.app/api/verificar-email/${tokenVerificacao}`;
         await transporter.sendMail({
             from: "seuemail@gmail.com",
             to: email,
