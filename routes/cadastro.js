@@ -1,4 +1,4 @@
-
+require("dotenv").config();
 const express = require("express");
 const bcrypt = require("bcrypt");
 const db = require("../db");
@@ -10,8 +10,16 @@ const router = express.Router();
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "contato.underap@gmail.com",
-        pass: "ezvf lhqv tqvy fljk"
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+
+transporter.verify((error, success) => {
+    if (error) {
+        console.log("Erro de conexão:", error);
+    } else {
+        console.log("Conexão bem-sucedida:", success);
     }
 });
 
