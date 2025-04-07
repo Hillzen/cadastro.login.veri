@@ -6,6 +6,8 @@ const cadastroRoutes = require("./routes/cadastro");
 const loginRoutes = require("./routes/login");
 const verificacaoRoutes = require("./routes/verificacao");
 const postsRoutes = require("./routes/posts");
+const redefinirRoutes = require("./routes/redefinir");
+
 
 
 
@@ -23,6 +25,8 @@ app.use("/api", cadastroRoutes);
 app.use("/api", loginRoutes);
 app.use("/api", verificacaoRoutes);
 app.use("/api", postsRoutes);
+app.use("/api", redefinirRoutes);
+
 
 // Inicializando o servidor
 app.listen(port, () => {
