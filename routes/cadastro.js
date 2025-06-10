@@ -53,7 +53,7 @@ router.post("/cadastro", async (req, res) => {
         );
         
         // Todo dia que rodar o ngrok na maquina, esse link http vai mudar,entao tem que vir aqui e trocar se não vai dar erro!!
-        const linkVerificacao = `  https://3b4c-2804-14c-1af-42d9-5c38-b2d7-bfa5-57c0.ngrok-free.app/api/verificar-email/${tokenVerificacao}`;
+        const linkVerificacao = `  https://c0cb-2804-14c-1af-42d9-78ef-9360-5299-6e1c.ngrok-free.app/api/verificar-email/${tokenVerificacao}`;
         await transporter.sendMail({
             from: "seuemail@gmail.com",
             to: email,

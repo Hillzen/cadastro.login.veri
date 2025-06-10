@@ -34,7 +34,7 @@ router.post("/esqueci-senha", async (req, res) => {
         await db.query("UPDATE usuarios SET token_redefinicao = ? WHERE email = ?", [token, email]);
 
         // Lembre-se de atualizar esse link se estiver usando ngrok!
-        const link = `https://3b4c-2804-14c-1af-42d9-5c38-b2d7-bfa5-57c0.ngrok-free.app/api/redefinir-senha/${token}`;
+        const link = ` https://c0cb-2804-14c-1af-42d9-78ef-9360-5299-6e1c.ngrok-free.app/api/redefinir-senha/${token}`;
 
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
